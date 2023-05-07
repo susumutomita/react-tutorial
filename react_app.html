@@ -14,10 +14,16 @@
   <script type="text/babel">
     let dom = document.querySelector('#root');
     let message = "new message";
-    const msg_style = {
+    const msg_style_true = {
       fontSize: "20pt",
       fontWeight: 'bold',
       color: "red",
+      border: "1px solid blue",
+    };
+    const msg_style_false = {
+      fontSize: "20pt",
+      fontWeight: 'bold',
+      color: "blue",
       border: "1px solid blue",
     };
     // let printMsg = function (msg, size, color) {
@@ -30,11 +36,11 @@
     //   return <p style={style}>{msg}</p>;
     // }
 
-    let flag = true;
+    let flag = false;
     let element = (
       <div>
-        {flag &&
-          <p style={msg_style}>{message}</p>
+        {flag ?
+          <p style={msg_style_true}>{message}</p> : <p style={msg_style_false}>{message}</p>
         }
       </div>
     );
