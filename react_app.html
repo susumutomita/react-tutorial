@@ -16,17 +16,22 @@
     const p = {
       fontSize: "18pt",
       padding: "5px 50px",
+      backgroundColor: "blue",
+      color: "white",
+      cursor: "pointer"
     };
     var counter =0;
-    setInterval(() => {
+    let doAction = (e) => {
+      console.log(e);
       counter++;
       let element = (
         <div>
-          <p style={p}>count: {counter}</p>
+          <p onClick={doAction} style={p}>count: {counter}</p>
         </div>
       );
       ReactDOM.render(element, dom);
-    }, 1000);
+    };
+    doAction();
   </script>
 </body>
 
