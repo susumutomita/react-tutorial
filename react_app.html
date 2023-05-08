@@ -13,74 +13,43 @@
   <div id="root">wait...</div>
   <script type="text/babel">
     let dom = document.querySelector('#root');
-    const table = {
+    const dfn = {
       fontSize: "18pt",
       padding: "5px 50px",
     };
-    const th = {
+    const dt = {
+      fontSize: "25pt",
       backgroundColor: "#006",
       color: "white",
       padding: "5px 15px",
     };
-    const td = {
+    const dd = {
       color: "black",
-      padding: "5px 15px",
+      padding: "10px",
       border: "1px solid gray",
     };
-    let data = [
-      {name:'Taro', mail:'taro@yamada', age: 39},
-      {name:'Hanako', mail:'hanako@flower', age: 28},
-      {name:'Sachiko', mail:'sachiko@happy', age: 17},
-    ];
-        let element = (
-          <div>
-            <table style = {table}></table>
-            <tr>
-              <th style = {th}>name</th>
-              <th style = {th}>mail</th>
-              <th style = {th}>age</th>
-              </tr>
-              {data.map((value) => (
-                <tr>
-                  <td style = {td}>{value.name}</td>
-                  <td style = {td}>{value.mail}</td>
-                  <td style = {td}>{value.age}</td>
-                </tr>
-              ))}
-          </div>
-        );
-
-    // let message = "new message";
-    // const msg_style_true = {
-    //   fontSize: "20pt",
-    //   fontWeight: 'bold',
-    //   color: "red",
-    //   border: "1px solid blue",
-    // };
-    // const msg_style_false = {
-    //   fontSize: "20pt",
-    //   fontWeight: 'bold',
-    //   color: "blue",
-    //   border: "1px solid blue",
-    // };
-    // let printMsg = function (msg, size, color) {
-    //   const style = {
-    //     fontSize: size + "pt",
-    //     fontWeight: '700',
-    //     color: color,
-    //     border: "1px solid " + color,
-    //   };
-    //   return <p style={style}>{msg}</p>;
-    // }
-
-    // let flag = false;
-    // let element = (
-    //   <div>
-    //     {flag ?
-    //       <p style={msg_style_true}>{message}</p> : <p style={msg_style_false}>{message}</p>
-    //     }
-    //   </div>
-    // );
+    let data = {
+      url: "https://www.google.com/",
+      title: "Google",
+      caption: "Google"
+    };
+    let element = (
+      <div>
+        {(() =>
+          <dl>
+            <dt style={dt}><dfn style={dfn}>
+              {data.title}
+            </dfn></dt>
+            <dd style={dd}>
+              {data.caption}
+            </dd>
+            <dd style={dd}>
+              <a href={data.url}>{data.title}に移動</a>
+            </dd>
+          </dl>
+        )()}
+      </div>
+    );
     ReactDOM.render(element, dom);
   </script>
 </body>
