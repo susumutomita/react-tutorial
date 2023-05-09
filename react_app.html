@@ -17,23 +17,24 @@
       fontSize: '20px',
       fontWeight: 'bold',
       padding: '20px',
-      color: 'white',
-      backgroundColor: 'darkblue'
+      border : '1px solid blue',
+
     }
 
-    function Calc(props) {
-      let total = 0;
-      for (let i = 1; i <= props.number; i++) {
-        total += i;
+    class Hello extends React.Component{
+      constructor(props){
+        super(props);
       }
-      return <p>1から{props.number}までの合計は{total}です。</p>
+
+      render (){
+        return <p style={msg}>Hello, {this.props.name}!</p>;
+      }
     }
+
 
     let el = (
       <div>
-        <Calc number="100" />
-        <Calc number="200" />
-        <Calc number="300" />
+        <Hello name="hogehoge"/>
       </div>
     );
     ReactDOM.render(el, dom);
