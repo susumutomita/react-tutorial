@@ -13,28 +13,34 @@
   <div id="root">wait...</div>
   <script type="text/babel">
     let dom = document.querySelector('#root');
-    const msg = {
-      fontSize: '20px',
-      fontWeight: 'bold',
-      padding: '20px',
-      border : '1px solid blue',
-
-    }
-
-    class Hello extends React.Component{
-      constructor(props){
+    class Rectangle extends React.Component {
+      style = {}
+      constructor(props) {
         super(props);
+        let x = parseInt(props.x);
+        let y = parseInt(props.y);
+        let width = parseInt(props.w);
+        let height = parseInt(props.h);
+        let color = props.c;
+        this.style = {
+          backgroundColor: color,
+          position: 'absolute',
+          left: x + 'px',
+          top: y + 'px',
+          width: width + 'px',
+          height: height + 'px'
+        }
       }
 
-      render (){
-        return <p style={msg}>Hello, {this.props.name}!</p>;
+      render() {
+        return <div style={this.style}></div>;
       }
     }
-
 
     let el = (
       <div>
-        <Hello name="hogehoge"/>
+        <Rectangle x="100" y="100" w="100" h="100" c="cyan" />
+        <Rectangle x="150" y="150" w="100" h="100" c="magenta" />
       </div>
     );
     ReactDOM.render(el, dom);
