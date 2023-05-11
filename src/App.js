@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super();
+    this.title = props.title;
+    this.message = props.message;
+  }
   render() {
     return <div>
-      <h1>React 18</h1>
-      <p>React 18 is awesome!</p>
-      <p>It's still in alpha, but it's going to be great!</p>
+      <h1>{ this.title}</h1>
+      <p>{ this.message}</p>
     </div>;
   }
 }
