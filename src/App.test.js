@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
 test('renders React title', () => {
@@ -7,14 +7,40 @@ test('renders React title', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('renders show list text', () => {
+test('renders initial message', () => {
   render(<App />);
-  const linkElement = screen.getByText(/show list./i);
+  const initialMessage = screen.getByText(/type your name/i);
+  expect(initialMessage).toBeInTheDocument();
+});
+
+test('updates message after form submission', () => {
+  render(<App />);
+  const inputField = screen.getByLabelText(/Name:/i);
+  const submitButton = screen.getByText(/Submit/i);
+
+  fireEvent.change(inputField, { target: { value: 'John' } });
+  fireEvent.click(submitButton);
+
+  const updatedMessage = screen.getByText(/Hello, John!!/i);
+  expect(updatedMessage).toBeInTheDocument();
+});
+
+test('renders Message component with correct title', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/Children!/i);
   expect(linkElement).toBeInTheDocument();
 });
 
-test('renders sample list title', () => {
+test('renders each part of Message component content', () => {
   render(<App />);
-  const linkElement = screen.getByText(/サンプル・リスト/i);
-  expect(linkElement).toBeInTheDocument();
+  const contentParts = [
+    "これはコンポーネント内のコンテンツです",
+    "マルでテキストを分割し、リストにして表示します",
+    "改行は必要ありません"
+  ];
+
+  contentParts.forEach(part => {
+    const linkElement = screen.getByText(new RegExp(part, 'i'));
+    expect(linkElement).toBeInTheDocument();
+  });
 });
