@@ -9,6 +9,10 @@ class App extends Component {
     margin: "20px 0px",
     padding: "5px",
   };
+  inputStyle = {
+    fontSize: "12pt",
+    padding: "5px",
+  };
 
   constructor(props) {
     super(props);
@@ -33,19 +37,14 @@ class App extends Component {
     return (
       <div>
         <h1>React</h1>
+        <h2>{this.state.message}</h2>
         <form onSubmit={this.doSubmit}>
           <label>
-            Name:
-            <input type="text" onChange={this.doChange} />
+            <span style={this.inputStyle}></span>Message:
+            <input type="text" style={ this.inputStyle }  onChange={this.doChange} />
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" style={ this.inputStyle } value="Click" />
         </form>
-        <p style={this.msgStyle}>{this.state.message}</p>
-        <Message title="Children!">
-          これはコンポーネント内のコンテンツです。
-          マルでテキストを分割し、リストにして表示します。
-          改行は必要ありません。
-        </Message>
       </div>
     );
   }
