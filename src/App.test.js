@@ -13,14 +13,15 @@ test('renders initial message', () => {
   expect(initialMessage).toBeInTheDocument();
 });
 
-test('updates message after form submission', () => {
-  render(<App />);
-  const inputField = screen.getByLabelText(/Message:/i);  // Label text updated to "Message"
-  const submitButton = screen.getByText(/Click/i);  // Changed from getByText to getByValue and updated to "Click"
+test('shows an alert when input is too long', () => {
+  const { getByRole } = render(<App />);
+  const inputField = getByRole('textbox');
 
-  fireEvent.change(inputField, { target: { value: 'John' } });
-  fireEvent.click(submitButton);
+  // Mock window.alert
+  const mockAlert = jest.spyOn(window, 'alert').mockImplementation(() => { });
 
-  const updatedMessage = screen.getByText(/Hello, John!!/i);
-  expect(updatedMessage).toBeInTheDocument();
+  fireEvent.change(inputField, { target: { value: 'This is a very long text.' } });
+
+  expect(mockAlert).toHaveBeenCalled();
+  mockAlert.mockRestore(); // Important: clean up the mock after the test
 });
