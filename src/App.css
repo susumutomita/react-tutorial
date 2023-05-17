@@ -16,3 +16,11 @@ p {
   font-size: 16pt;
   color: #999;
 }
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid green;
+} 
