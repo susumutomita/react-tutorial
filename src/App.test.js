@@ -1,27 +1,14 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders React title', () => {
+test('renders title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/React/i);
-  expect(linkElement).toBeInTheDocument();
+  const titleElement = screen.getByText(/Title/i);
+  expect(titleElement).toBeInTheDocument();
 });
 
 test('renders initial message', () => {
   render(<App />);
-  const initialMessage = screen.getByText(/type your name/i);
+  const initialMessage = screen.getByText(/this is sample message./i);
   expect(initialMessage).toBeInTheDocument();
-});
-
-test('shows an alert when input is too long', () => {
-  const { getByRole } = render(<App />);
-  const inputField = getByRole('textbox');
-
-  // Mock window.alert
-  const mockAlert = jest.spyOn(window, 'alert').mockImplementation(() => { });
-
-  fireEvent.change(inputField, { target: { value: 'This is a very long text.' } });
-
-  expect(mockAlert).toHaveBeenCalled();
-  mockAlert.mockRestore(); // Important: clean up the mock after the test
 });

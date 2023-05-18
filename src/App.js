@@ -1,56 +1,41 @@
 import React, { Component } from "react";
 import "./App.css";
 
+let data = {
+  title: "Title",
+  message: "this is sample message."
+};
+const SampleContext = React.createContext(data);
+
 class App extends Component {
-  input = "";
-  msgStyle = {
-    fontSize: "20pt",
-    color: "blue",
-    margin: "20px 0px",
-    padding: "5px",
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: 'type your name'
-    };
-    this.doChange = this.doCheck.bind(this);
-  }
-
-  doCheck(event) {
-    alert(event.target.value + "は長すぎます。（最大10文字）");
-  }
 
   render() {
     return <div>
-      <h1>React</h1>
-      <h2>{this.state.message}</h2>
-      <Message maxlength="10" onCheck={this.doCheck} />
+      <h1>Context</h1>
+      <Title />
+      <Message />
+    </div>;
+  }
+}
+
+class Title extends Component {
+  static contextType = SampleContext;
+
+  render() {
+    return <div>
+      <h2>{this.context.title}</h2>
     </div>;
   }
 }
 
 class Message extends Component {
-  inputStyle = {
-    fontSize: "12pt",
-    padding: "5px"
-  };
 
-  constructor(props) {
-    super(props);
-    this.doChange = this.doChange.bind(this);
-  }
-
-  doChange(event) {
-    if (event.target.value.length > this.props.maxlength) {
-      this.props.onCheck(event);
-      event.target.value = event.target.value.substr(0, this.props.maxlength);
-    }
-  }
+  static contextType = SampleContext;
 
   render() {
-    return <input type="text" style={this.inputStyle} onChange={this.doChange} />;
+    return <div>
+      <p>{this.context.message}</p>
+    </div>;
   }
 }
 
