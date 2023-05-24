@@ -59,4 +59,4 @@ class AddForm extends Component {
   }
 }
 
-export default connect((state) = state)(AddForm);
+export default connect((state) => state)(AddForm);
