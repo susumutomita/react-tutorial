@@ -6,16 +6,16 @@ class Item extends Component {
     fontSize: "14pt",
     backgroundColor: "blue",
     color: "white",
-    padding: "5px 10 px",
-    width:"50px"
+    padding: "5px 10px",
+    width: "50px"
   }
   td = {
     fontSize: "14pt",
     backgroundColor: "white",
     color: "darkblue",
     padding: "5px 10px",
-    border:"1px solid lightblue",
-    minWidth:"300px"
+    border: "1px solid lightblue",
+    minWidth: "300px"
   }
   data = {
     fontSize: "14pt",
@@ -32,7 +32,7 @@ class Item extends Component {
     return (
       <tr><th style={this.th}>No, {this.props.index}</th>
         <td style={this.td}>{this.props.value.message}</td>
-        <td style={this.date}>{ f}</td>
+        <td style={this.data}>{f}</td>
       </tr>
     )
   }
