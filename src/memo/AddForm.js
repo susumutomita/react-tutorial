@@ -24,7 +24,7 @@ class AddForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message:''
+      message: ''
     }
     this.doChange = this.doChange.bind(this);
     this.doAction = this.doAction.bind(this);
@@ -39,7 +39,7 @@ class AddForm extends Component {
   doAction(e) {
     e.preventDefault();
     let action = addMemo(this.state.message);
-    this.props.dispatch(aciton);
+    this.props.dispatch(action);
     this.setState({
       message: ''
     });
