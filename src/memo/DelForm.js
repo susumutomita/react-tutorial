@@ -48,7 +48,7 @@ class DelForm extends Component {
     ))
     return (
       <div>
-        <form onSubmit={this.doAction}>
+        <form aria-label="DelForm" onSubmit={this.doAction}>
           <select onChange={this.doChange}
             defaultValue="-1" style={this.input}>
             {items}

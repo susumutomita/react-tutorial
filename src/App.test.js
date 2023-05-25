@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import configureStore from "redux-mock-store";
 import App from "./App";
 
@@ -10,11 +10,11 @@ let store;
 describe("App Component", () => {
   beforeEach(() => {
     store = mockStore({
-      counter: 0,
-      message: "COUNTER",
+      message: '',
+      mode: 'default',
+      data: [],
+      fdata: []
     });
-
-    store.dispatch = jest.fn();
 
     render(
       <Provider store={store}>
@@ -23,21 +23,19 @@ describe("App Component", () => {
     );
   });
 
-  it("should render with given state from Redux store", () => {
-    expect(screen.getByText(/COUNTER/)).toBeInTheDocument();
-    expect(screen.getByText(/0/)).toBeInTheDocument();
-
+  it("should render the app title", () => {
+    expect(screen.getByText(/Memo/)).toBeInTheDocument();
   });
 
-  it("should dispatch an action on button click", () => {
-    fireEvent.click(screen.getByText("click"));
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
-    expect(store.dispatch).toHaveBeenCalledWith({ type: "INCREMENT" });
+  it("should render the AddForm component", () => {
+    expect(screen.getByRole('form', { name: /AddForm/i })).toBeInTheDocument();
   });
 
-  it("should dispatch an action on button click with shift key", () => {
-    fireEvent.click(screen.getByText("click"), { shiftKey: true });
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
-    expect(store.dispatch).toHaveBeenCalledWith({ type: "DECREMENT" });
+  it("should render the FindForm component", () => {
+    expect(screen.getByRole('form', { name: /FindForm/i })).toBeInTheDocument();
+  });
+
+  it("should render the DelForm component", () => {
+    expect(screen.getByRole('form', { name: /DelForm/i })).toBeInTheDocument();
   });
 });

@@ -38,10 +38,10 @@ class FindForm extends Component {
 
   render() {
     return (
-        <form onSubmit={this.doAction}>
-          <input type="text" size="10" onChange={this.doChange} style={this.input} value={this.state.message} />
-          <input type="submit" style={this.btn} value="Find"/>
-        </form>
+      <form aria-label="FindForm" onSubmit={this.doAction}>
+        <input type="text" size="10" onChange={this.doChange} style={this.input} value={this.state.message} />
+        <input type="submit" style={this.btn} value="Find" />
+      </form>
     )
   }
 }
