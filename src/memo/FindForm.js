@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addMemo } from './Store';
+import { findMemo } from './Store';
 
-class AddForm extends Component {
+class FindForm extends Component {
 
   input = {
-    fontSize: "16pt",
-    color: "#006",
-    padding: "1px",
-    margin: "5px 0px"
-  }
-  btn = {
     fontSize: "14pt",
     color: "#006",
-    padding: "2px 10px",
+    padding: "0px",
   }
-  message = {
-    fontSize: "16pt",
+  btn = {
+    fontSize: "12pt",
     color: "#006",
-    margin: "5px 0px"
+    padding: "1px 10px",
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      message: ''
+      find: ''
     }
     this.doChange = this.doChange.bind(this);
     this.doAction = this.doAction.bind(this);
@@ -32,31 +26,24 @@ class AddForm extends Component {
 
   doChange(e) {
     this.setState({
-      message: e.target.value
+      find: e.target.value
     });
   }
 
   doAction(e) {
     e.preventDefault();
-    let action = addMemo(this.state.message);
+    let action = findMemo(this.state.find);
     this.props.dispatch(action);
-    this.setState({
-      message: ''
-    });
   }
 
   render() {
     return (
-      <div>
-        <p style={this.message}>{this.props.message}</p>
         <form onSubmit={this.doAction}>
-          <input type="text" size="40" onChange={this.doChange} style={this.input} value={this.state.message} required />
-          <input sype="submit" style={this.btn} value="Add"/>
+          <input type="text" size="10" onChange={this.doChange} style={this.input} value={this.state.message} />
+          <input type="submit" style={this.btn} value="Find"/>
         </form>
-      </div>
-
     )
   }
 }
 
-export default connect((state) => state)(AddForm);
+export default connect((state) => state)(FindForm);
