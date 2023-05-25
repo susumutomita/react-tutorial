@@ -51,7 +51,7 @@ class AddForm extends Component {
         <p style={this.message}>{this.props.message}</p>
         <form onSubmit={this.doAction}>
           <input type="text" size="40" onChange={this.doChange} style={this.input} value={this.state.message} required />
-          <input sype="submit" style={this.btn} value="Add"/>
+          <input type="submit" style={this.btn} value="Add"/>
         </form>
       </div>
 
