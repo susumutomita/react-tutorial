@@ -55,12 +55,13 @@ class Button extends Component {
 
   doAction(e) {
     if (e.shiftKey) {
+      console.log('Shift key is pressed.');
       this.props.dispatch({ type: 'DECREMENT' });
-    }
-    if (e.ctrlKey) {
+    } else if (e.ctrlKey) {
+      console.log('Ctrl key is pressed.');
       this.props.dispatch({ type: 'RESET' });
-    }
-    else {
+    } else {
+      console.log('No special key is pressed.');
       this.props.dispatch({ type: 'INCREMENT' });
     }
   }
