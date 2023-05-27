@@ -48,7 +48,7 @@ let store = createStore(persistedReducer) // fix here
 let pstore = persistStore(store)
 
 ReactDOM.render(
-  <Provider store={MemoStore}>
+  <Provider store={store}>
     <PersistGate loading={<p>loading ...</p>}
       persistor={pstore}>
       <App />
