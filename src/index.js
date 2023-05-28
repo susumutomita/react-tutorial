@@ -12,6 +12,8 @@ import { memoReducer } from "./memo/Store";
 const persistConfig = {
   key: 'memo',
   storage,
+  blacklist: ['message', 'mode', 'fdata'],
+  whitelist: ['data']
 };
 
 const persistedReducer = persistReducer(persistConfig, memoReducer);
