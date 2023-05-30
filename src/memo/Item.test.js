@@ -1,24 +1,30 @@
-import React from "react";
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
+import configureStore from "redux-mock-store";
 import Item from "./Item";
 
-// 仮のReducer
-const reducer = (state = {}, action) => state;
+const mockStore = configureStore([]);
+let store;
 
 describe("Item Component", () => {
+  beforeEach(() => {
+    store = mockStore({});
+  });
+
   it("should display the correct index and message", () => {
     const index = 1;
     const message = "test message";
     const created = "2023-05-18";
 
-    // ストアとProviderを追加
-    const store = createStore(reducer);
     render(
       <Provider store={store}>
-        <Item index={index} value={{ message, created }} />
-      </Provider>
+        <table>
+          <tbody>
+            <Item index={index} value={{ message, created }} />
+          </tbody>
+        </table>
+      </Provider>,
+      document.body
     );
 
     expect(screen.getByText(`No, ${index}`)).toBeInTheDocument();

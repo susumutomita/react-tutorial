@@ -14,7 +14,10 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  document.body.removeChild(document.getElementById('root'));
+  const div = document.getElementById('root');
+  if (div) {
+    document.body.removeChild(div);
+  }
 });
  
 describe("App Component", () => {
