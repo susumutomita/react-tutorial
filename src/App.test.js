@@ -8,12 +8,15 @@ const mockStore = configureStore([]);
 let store;
 
 beforeAll(() => {
-  const div = document.createElement("div");
-  div.setAttribute("id", "root");
+  const div = document.createElement('div');
+  div.setAttribute('id', 'root');
   document.body.appendChild(div);
 });
 
-
+afterAll(() => {
+  document.body.removeChild(document.getElementById('root'));
+});
+ 
 describe("App Component", () => {
   beforeEach(() => {
     store = mockStore({
