@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React, { Component } from 'react';
 
 export default class Counter extends Component {
   msgStyle = {
@@ -7,7 +7,7 @@ export default class Counter extends Component {
     padding: "5px"
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       counter: 0,
@@ -16,17 +16,17 @@ export default class Counter extends Component {
     this.doAction = this.doAction.bind(this);
   }
 
-  doAction(){
-    this.setState((state)=>{
+  doAction() {
+    this.setState((state) => {
       const num = state.counter + 1;
       return ({
         counter: num,
         msg: "counter: " + num
+      });
     });
-  });
   }
 
-  render(){
+  render() {
     return (
       <p onClick={this.doAction}
         style={this.msgStyle}>
