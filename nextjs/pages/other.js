@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import Counter from '../components/Counter';
 
-export default () => (
+const OtherPage = () => (
   <Layout header="Other" title="Other page.">
     <p>this is Other page.</p>
     <Counter />
@@ -14,3 +14,5 @@ export default () => (
     </div>
   </Layout>
 )
+
+export default OtherPage;
