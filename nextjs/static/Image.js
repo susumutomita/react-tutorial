@@ -10,7 +10,7 @@ class Image extends Component {
   
     render() {
       return (
-        <img width = {this.size} boorder="1" src={this.fname} alt="This is sample image"/>
+        <img width = {this.size} boorder="1" src={this.fname} alt="This is sample"/>
       );
     }
   }
