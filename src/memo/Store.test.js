@@ -28,7 +28,7 @@ describe("Memo Reducer", () => {
   it("should find a memo", () => {
     store.dispatch(addMemo('Find me'));
     store.dispatch(findMemo('Find me'));
-    const { data, fdata, message } = store.getState();
+    const { fdata, message } = store.getState();
     expect(fdata.length).toBe(1);
     expect(fdata[0].message).toBe('Find me');
     expect(message).toBe('find "Find me":');
