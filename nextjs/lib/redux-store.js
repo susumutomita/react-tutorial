@@ -16,7 +16,7 @@ function getOrCreateStore(initialState) {
   return window[_NRS_];
 }
 
-export default (App) => {
+const withRedux = (App) => {
 
   return class AppWithRedux extends Component {
 
@@ -45,3 +45,5 @@ export default (App) => {
     }
   }
 }
+
+export default withRedux;
