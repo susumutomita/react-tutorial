@@ -54,7 +54,7 @@ class Calc extends Component {
     let result = [];
     let n = this.props.data.length;
     for (let i = 0; i < n; i++) {
-      result.push.push(<tr key={i}>
+      result.push(<tr key={i}>
         <th>{this.props.data[i]}</th>
         <td>{this.props.number[i]}</td>
       </tr>);
