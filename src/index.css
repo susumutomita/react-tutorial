@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
 }
 
@@ -88,4 +88,20 @@ body {
 
 .game-info {
   margin-left: 20px;
+} */
+
+th {
+  font-size : 14px;
+  text-align: left;
+  padding: 5px 20px;
+  margin: 0;
+  border-bottom: 1px solid #ddd;
+}
+td {
+  font-size : 14px;
+  font-weight: plain;
+  text-align: left;
+  padding: 5px 20px;
+  margin: 0;
+  border-bottom: 1px solid #ddd;
 }
