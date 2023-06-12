@@ -19,7 +19,7 @@ class Sampledata extends Component {
 
   getFireData() {
     let db = firebase.database();
-    let ref = db.ref('sample/');
+    let ref = db.ref('Sample/');
     let self = this;
     ref.orderByKey()
       .limitToFirst(10)
