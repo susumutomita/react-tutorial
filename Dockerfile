@@ -14,4 +14,4 @@ RUN yarn install
 COPY . .
 
 # 開発用サーバーを起動するコマンド
-# CMD ["yarn", "start"]
+CMD ["yarn", "start"]
