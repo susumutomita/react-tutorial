@@ -1,16 +1,19 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA_wg1JHHDD-xSQ7Fe-soSbzxqyulmzP5w",
-  authDomain: "react-a4633.firebaseapp.com",
-  databaseURL: "https://react-a4633-default-rtdb.firebaseio.com",
-  projectId: "react-a4633",
-  storageBucket: "react-a4633.appspot.com",
-  messagingSenderId: "475293368411",
-  appId: "1:475293368411:web:483e3a5667b04d0d847f7e",
-  measurementId: "G-X1R861JLV6"
+  apiKey: "AIzaSyC3XiXeJq9jqNqIGDgOXRtwjbpcjviU_rg",
+  authDomain: "hoge-a4814.firebaseapp.com",
+  projectId: "hoge-a4814",
+  storageBucket: "hoge-a4814.appspot.com",
+  messagingSenderId: "166097072660",
+  appId: "1:166097072660:web:6532cfafb793733abbad01"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export default app;

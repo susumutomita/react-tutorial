@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getDatabase, ref, onValue, orderByKey, limitToFirst } from "firebase/database";
 import app from './firebaseConfig';
 
 class Sampledata extends Component {
@@ -17,17 +18,22 @@ class Sampledata extends Component {
   }
 
   getFireData() {
-    let db = app.database();
-    let ref = db.ref('Sample/');
+    let db = getDatabase(app);
     let self = this;
-    ref.orderByKey()
-      .limitToFirst(10)
-      .on('value', (snapshot) => {
-        self.setState({
-          data: snapshot.val()
-        });
+    let query = ref(db, 'Sample/');
+    query = orderByKey(query);
+    query = limitToFirst(query, 10);
+    onValue(query, (snapshot) => {
+      console.log(snapshot.val());
+      self.setState({
+        data: snapshot.val()
       });
+    }, (errorObject) => {
+      console.log("The read failed: " + errorObject.code);
+    });
   }
+
+
 
   getTableData() {
     let result = [];
@@ -48,6 +54,7 @@ class Sampledata extends Component {
     if (this.state.data.length === 0) {
       this.getFireData();
     }
+    console.log(this.getTableData());
     return (
       <table><tbody>
         {this.getTableData()}
