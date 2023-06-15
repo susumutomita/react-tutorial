@@ -20,7 +20,7 @@ class Sampledata extends Component {
   getFireData() {
     let db = getDatabase(app);
     let self = this;
-    let query = ref(db, 'Sample/');
+    let query = ref(db, 'sample/');
     query = orderByKey(query);
     query = limitToFirst(query, 10);
     onValue(query, (snapshot) => {
