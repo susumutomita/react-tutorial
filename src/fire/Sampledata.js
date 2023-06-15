@@ -20,10 +20,10 @@ class Sampledata extends Component {
   getFireData() {
     let db = getDatabase(app);
     let self = this;
-    let query = ref(db, 'sample');
-    // query = orderByKey(query);
-    // query = limitToFirst(query, 10);
-    onValue(query, (snapshot) => {
+    let baseRef = ref(db, 'sample');
+    // let orderedQuery = orderByKey(baseRef);
+    // baseRef = limitToFirst(baseRef, 11);
+    onValue(baseRef, (snapshot) => {
       console.log(snapshot.val());
       self.setState({
         data: snapshot.val()
@@ -32,8 +32,6 @@ class Sampledata extends Component {
       console.log("The read failed: " + errorObject.code);
     });
   }
-
-
 
   getTableData() {
     let result = [];
