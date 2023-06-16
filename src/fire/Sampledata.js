@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, orderByKey, limitToFirst, query } from "firebase/database";
 import app from './firebaseConfig';
 
 class Sampledata extends Component {
@@ -20,10 +20,8 @@ class Sampledata extends Component {
   getFireData() {
     let db = getDatabase(app);
     let self = this;
-    let baseRef = ref(db, 'sample');
-    // let orderedQuery = orderByKey(baseRef);
-    // orderedQuery = limitToFirst(orderedQuery, 11);
-    onValue(baseRef, (snapshot) => {
+    const topUserPostsRef = query(ref(db, 'sample'), orderByKey(), limitToFirst(1));
+    onValue(topUserPostsRef, (snapshot) => {
       console.log(snapshot.val());
       self.setState({
         data: snapshot.val()
