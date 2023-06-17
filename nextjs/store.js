@@ -15,9 +15,9 @@ function fireReducer (state = initial, action) {
   }
 }
 
-export function initializeStore (initialState = initial) {
+export function initStore (initialState = initial) {
   return createStore(
-    firereducer,
+    fireReducer,
     initialState,
     applyMiddleware(thunkMiddleware)
   )
