@@ -20,7 +20,7 @@ class Sampledata extends Component {
   getFireData() {
     let db = getDatabase(app);
     let self = this;
-    const topUserPostsRef = query(ref(db, 'sample'), orderByKey(), limitToFirst(10));
+    const topUserPostsRef = query(ref(db, 'sample/'), orderByKey(), limitToFirst(10));
     onValue(topUserPostsRef, (snapshot) => {
       console.log(snapshot.val());
       self.setState({
