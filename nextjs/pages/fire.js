@@ -11,5 +11,8 @@ export default () => (
     <Link href="./fire_find">
       <button>Go to find data &gt;&gt;</button>
     </Link>
+    <Link href="./fire_del">
+      <button>Go to delete data &gt;&gt;</button>
+    </Link>
   </Layout>
 );

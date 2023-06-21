@@ -47,7 +47,7 @@ class Sampledata extends Component {
   }
 
   render() {
-    if (this.state.data.length === 0) {
+    if (!this.state.data || this.state.data.length === 0) {
       this.getFireData();
     }
     console.log(this.getTableData());
