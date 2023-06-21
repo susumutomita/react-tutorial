@@ -42,14 +42,21 @@ class Fireadd extends Component {
     const db = getDatabase(app);
     onValue(query(ref(db, 'sample/'), orderByKey(), limitToLast(1)), (snapshot) => {
       let res = snapshot.val();
-      for (let i in res) {
+      if (res !== null) { // Check if snapshot has data
+        for (let i in res) {
+          this.setState({
+            lastID: i
+          });
+          return;
+        }
+      } else { // If snapshot is null, initialize lastID to 0
         this.setState({
-          lastID: i
+          lastID: 0
         });
-        return;
       }
     });
   }
+
 
   addFireData() {
     if (this.state.lastID === -1) {
