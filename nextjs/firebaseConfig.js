@@ -14,6 +14,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+try {
+  const app = initializeApp(firebaseConfig);
+} catch (error) {
+  console.log(error);
+}
 
 export default app;
