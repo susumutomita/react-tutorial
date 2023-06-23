@@ -1,5 +1,6 @@
-import React, { Copmponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { getDatabase, ref, onValue, orderByKey, equalTo, query } from "firebase/database";
 import app from '../firebaseConfig';
 
@@ -14,9 +15,9 @@ class Account extends Component {
   }
 
   login() {
-    let provider = new firebase.auth.GoogleAuthProvider();
-    var self = this;
-    firebase.auth().signInWithPopup(provider)
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
       .then((result) => {
         this.props.dispatch({
           type: 'UPDATE_USER',
@@ -28,13 +29,13 @@ class Account extends Component {
             items: this.props.items
           }
         });
-        this.propos.onLogined();
+        this.props.onLogined();
       });
   }
 
   logout() {
-    console.log('logout');
-    firebase.auth().signOut();
+    const auth = getAuth();
+    signOut(auth);
     this.props.dispatch({
       type: 'UPDATE_USER',
       value: {
@@ -69,7 +70,3 @@ class Account extends Component {
 
 Account = connect((state) => state)(Account);
 export default Account;
-
-
-
-}
