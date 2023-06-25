@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { getDatabase, ref, onValue, orderByKey, equalTo, query } from "firebase/database";
-import app from '../firebaseConfig';
 
 class Account extends Component {
   style = {
