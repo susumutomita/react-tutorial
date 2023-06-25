@@ -55,7 +55,7 @@ class Address extends Component {
       for (let j in data[i]) {
         let email = Lib.decodeEmail(i);
         let s = data[i][j]['name'];
-        res.push(<li key={j} data-tag={email}>{data[i][j]['check'] == true ? <b>X</b> : ''}{s}({email})
+        res.push(<li key={j} data-tag={email}>{data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
         </li>);
       }
       break;
@@ -72,7 +72,7 @@ class Address extends Component {
       <div>
         <Account onLogined={this.logined} onLogouted={this.logouted} />
         <ul>
-          {this.props.items == []
+          {this.props.items === []
             ?
             <li key="0">NO ITEM.</li>
             :
