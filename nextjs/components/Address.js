@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 import Lib from '../static/address_lib';
 import Account from '../components/Account';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { getDatabase, ref, onValue, orderByKey, equalTo, query } from "firebase/database";
 import app from '../firebaseConfig';
 
@@ -27,7 +26,7 @@ class Address extends Component {
   }
 
   getFireData() {
-    if (this.props.email == undefined || this.props.email == '') {
+    if (this.props.email === undefined || this.props.email === '') {
       return;
     }
     let email = Lib.encodeEmail(this.props.email);
@@ -48,7 +47,7 @@ class Address extends Component {
   }
 
   getItem(data) {
-    if (data == undefined || data == null) {
+    if (data === undefined || data === null) {
       return;
     }
     let res = [];
