@@ -14,7 +14,7 @@ class AddressShow extends Component {
 
   constructor(props) {
     super(props);
-    if (this.props.login == false) {
+    if (this.props.login === false) {
       Router.push('/address');
     }
     this.state = {

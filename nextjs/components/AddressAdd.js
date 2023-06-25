@@ -14,7 +14,7 @@ class AddressAdd extends Component {
 
   constructor(props) {
     super(props);
-    if (this.props.login == false) {
+    if (this.props.login === false) {
       Router.push('/address');
     }
     this.state = {
@@ -65,7 +65,6 @@ class AddressAdd extends Component {
   }
 
   doAction(e) {
-    let key = this.state.email;
     let data = {
       name: this.state.name,
       tel: this.state.tel,

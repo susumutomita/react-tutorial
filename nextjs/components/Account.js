@@ -48,7 +48,7 @@ class Account extends Component {
   }
 
   login_check() {
-    if (this.props.login == false) {
+    if (this.props.login === false) {
       this.login();
     } else {
       this.logout();

@@ -74,12 +74,12 @@ class Fireadd extends Component {
   }
 
   render() {
-    if (this.state.lastID == -1) {
+    if (this.state.lastID === -1) {
       this.getLastID();
     }
     return (
       <div>
-        {(this.state.lastID == -1)
+        {(this.state.lastID === -1)
           ?
           <p>please wait...</p>
           :
