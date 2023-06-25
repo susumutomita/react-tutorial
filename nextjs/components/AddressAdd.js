@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 import Lib from '../static/address_lib';
 import Account from './Account';
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 import app from '../firebaseConfig';
 
 class AddressAdd extends Component {
