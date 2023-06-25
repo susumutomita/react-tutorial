@@ -44,7 +44,7 @@ class AddressShow extends Component {
     onValue(ref(db, 'address/' + Lib.encodeEmail(this.props.email), orderByKey(), equalTo(Lib.encodeEmail(email))), (snapshot) => {
       for (let i in snapshot.val()) {
         let d = Lib.deepcopy(snapshot.val()[i]);
-        self.setState({
+        setState({
           address: d,
         });
         break;
@@ -71,7 +71,7 @@ class AddressShow extends Component {
     let db = getDatabase(app);
     let d = new Date().getTime();
     let ref0 = ref(db, 'address/' + from + '/' + to + '/message/' + d);
-    ref0.set('to: ' + this.state, input);
+    ref0.set('to: ' + this.state.input);
     let ref1 = ref(db, 'address/' + to + '/' + from + '/message/' + d);
     ref1.set('from: ' + this.state.input);
     let ref2 = ref(db, 'address/' + from + '/' + to + '/check');
