@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import AddressAdd from '../components/AddressAdd';
 
-export default () => (
+const AddPage = () => (
   <Layout header="Address" title="address create.">
     <AddressAdd />
     <hr />
@@ -13,3 +13,5 @@ export default () => (
     </div>
   </Layout>
 );
+
+export default AddPage;

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import Address from '../components/Address';
 
-export default () => (
+const HomePage = () => (
   <Layout header="Address" title="address book.">
     <Address />
     <hr />
@@ -13,3 +13,5 @@ export default () => (
     </div>
   </Layout>
 );
+
+export default HomePage;
