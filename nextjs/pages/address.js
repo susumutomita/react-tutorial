@@ -8,7 +8,7 @@ const HomePage = () => (
     <hr />
     <div>
       <Link href="/address_add">
-        <button>Add address</button>
+        <button>add</button>
       </Link>
     </div>
   </Layout>

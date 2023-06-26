@@ -52,16 +52,28 @@ class Address extends Component {
     }
     let res = [];
     for (let i in data) {
-      for (let j in data[i]) {
-        let email = Lib.decodeEmail(i);
-        let s = data[i][j]['name'];
-        res.push(<li key={j} data-tag={email}>{data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
-        </li>);
-      }
-      break;
+      let email = Lib.decodeEmail(i);
+      let s = data[i]['name'];
+      res.push(<li key={i} data-tag={email}>{data[i]['check'] === true ? <b>X</b> : ''}{s}({email})</li>);
     }
     return res;
   }
+  // getItem(data) {
+  //   if (data === undefined || data === null) {
+  //     return;
+  //   }
+  //   let res = [];
+  //   for (let i in data) {
+  //     for (let j in data[i]) {
+  //       let email = Lib.decodeEmail(i);
+  //       let s = data[i][j]['name'];
+  //       res.push(<li key={j} data-tag={email}>{data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
+  //       </li>);
+  //     }
+  //     break;
+  //   }
+  //   return res;
+  // }
 
   go(email) {
     Router.push('/address_show?email=' + email);
