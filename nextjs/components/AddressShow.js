@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 import Lib from '../static/address_lib';
 import Account from './Account';
-import { equalTo, getDatabase, orderByKey, ref, onValue, setState } from "firebase/database";
+import { equalTo, getDatabase, orderByKey, ref, onValue, setState, set } from "firebase/database";
 import app from '../firebaseConfig';
 
 class AddressShow extends Component {
@@ -45,11 +45,11 @@ class AddressShow extends Component {
   getAddress(email) {
     let db = getDatabase(app);
     let ref0 = ref(db, 'address/' + Lib.encodeEmail(this.props.email) + '/' + Lib.encodeEmail(email) + '/check');
-    ref0.set(0);
+    set(ref0, 0);
     onValue(ref(db, 'address/' + Lib.encodeEmail(this.props.email), orderByKey(), equalTo(Lib.encodeEmail(email))), (snapshot) => {
       for (let i in snapshot.val()) {
         let d = Lib.deepcopy(snapshot.val()[i]);
-        setState({
+        this.setState({
           address: d,
         });
         break;
@@ -88,8 +88,11 @@ class AddressShow extends Component {
 
 
   render() {
-    if (this.state.address == null) {
+    if (this.state.email) {
       this.getAddress(this.state.emaill);
+    } else {
+      console.log('Email is undefined'); // 未定義の場合のデバッグメッセージ
+      this.getAddress("test@test.com");
     }
     let items = [];
     if (this.state.address != null) {
