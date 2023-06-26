@@ -12,17 +12,20 @@ class AddressShow extends Component {
     padding: "5px 15px"
   }
 
+
   constructor(props) {
     super(props);
     if (this.props.login === false) {
-      Router.push('/address');
+      if (typeof window !== 'undefined') {
+        Router.push('/address');
+      }
     }
     this.state = {
       last: -1,
       input: '',
-      emaill: Router.query.email,
+      email: this.props.email,  // use the email prop set in getInitialProps
       address: null,
-      message: Router.query.email + 'のデータ'
+      message: this.props.email + 'のデータ'
     }
     this.logined = this.logined.bind(this);
     this.doChange = this.doChange.bind(this);
@@ -34,7 +37,9 @@ class AddressShow extends Component {
   }
 
   logouted() {
-    Router.push('/address');
+    if (typeof window !== 'undefined') {
+      Router.push('/address');
+    }
   }
 
   getAddress(email) {
@@ -143,4 +148,11 @@ class AddressShow extends Component {
 }
 
 AddressShow = connect((state) => state)(AddressShow);
+AddressShow.getInitialProps = ({ router }) => {
+  const email = router.query.email;
+
+  return {
+    email: email
+  }
+}
 export default AddressShow;
