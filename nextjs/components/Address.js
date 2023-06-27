@@ -15,9 +15,21 @@ class Address extends Component {
   constructor(props) {
     super(props);
     this.logined = this.logined.bind(this);
+    this.logouted = this.logouted.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    // If the login status has changed, get the Firebase data again
+    if (this.props.login !== prevProps.login) {
+      this.logined();
+    }
   }
 
   logined() {
+    if (!this.props.login) {
+      // If not logged in, do nothing
+      return;
+    }
     this.getFireData();
   }
 
@@ -25,7 +37,7 @@ class Address extends Component {
     Router.push('/address');
   }
 
-  getFireData() {
+  getFireData(props) {
     if (this.props.email === undefined || this.props.email === '') {
       return;
     }
@@ -52,28 +64,16 @@ class Address extends Component {
     }
     let res = [];
     for (let i in data) {
-      let email = Lib.decodeEmail(i);
-      let s = data[i]['name'];
-      res.push(<li key={i} data-tag={email}>{data[i]['check'] === true ? <b>X</b> : ''}{s}({email})</li>);
+      for (let j in data[i]) {
+        let email = Lib.decodeEmail(i);
+        let s = data[i][j]['name'];
+        res.push(<li key={j} data-tag={email}>{data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
+        </li>);
+      }
+      break;
     }
     return res;
   }
-  // getItem(data) {
-  //   if (data === undefined || data === null) {
-  //     return;
-  //   }
-  //   let res = [];
-  //   for (let i in data) {
-  //     for (let j in data[i]) {
-  //       let email = Lib.decodeEmail(i);
-  //       let s = data[i][j]['name'];
-  //       res.push(<li key={j} data-tag={email}>{data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
-  //       </li>);
-  //     }
-  //     break;
-  //   }
-  //   return res;
-  // }
 
   go(email) {
     Router.push('/address_show?email=' + email);

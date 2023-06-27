@@ -27,7 +27,13 @@ class Account extends Component {
             items: this.props.items
           }
         });
-        this.props.onLogined();
+        // Call the onLogined prop here
+        if (typeof this.props.onLogined === 'function') {
+          this.props.onLogined();
+        }
+      })
+      .catch((error) => {
+        console.log('error', error);
       });
   }
 
@@ -44,7 +50,9 @@ class Account extends Component {
         items: []
       }
     });
-    this.props.onLogouted();
+    if (typeof this.props.onLogouted === 'function') {
+      this.props.onLogouted();
+    }
   }
 
   login_check() {
