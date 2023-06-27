@@ -48,14 +48,11 @@ class AddressShow extends Component {
     set(ref0, 0);
     let refPath = ref(db, 'address/' + Lib.encodeEmail(this.props.email) + '/' + Lib.encodeEmail(email));
     onValue(refPath, (snapshot) => {
-      console.log(snapshot.val()); // データベースから取得したデータをコンソールに出力します。
-      for (let i in snapshot.val()) {
-        let d = Lib.deepcopy(snapshot.val()[i]);
-        this.setState({
-          address: d,
-        });
-        break;
-      }
+      let d = Lib.deepcopy(snapshot.val());
+      d.email = email; // メールアドレスを追加します
+      this.setState({
+        address: d,
+      });
     });
   }
 
