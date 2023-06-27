@@ -46,7 +46,9 @@ class AddressShow extends Component {
     let db = getDatabase(app);
     let ref0 = ref(db, 'address/' + Lib.encodeEmail(this.props.email) + '/' + Lib.encodeEmail(email) + '/check');
     set(ref0, 0);
-    onValue(ref(db, 'address/' + Lib.encodeEmail(this.props.email), orderByKey(), equalTo(Lib.encodeEmail(email))), (snapshot) => {
+    let refPath = ref(db, 'address/' + Lib.encodeEmail(this.props.email) + '/' + Lib.encodeEmail(email));
+    onValue(refPath, (snapshot) => {
+      console.log(snapshot.val()); // データベースから取得したデータをコンソールに出力します。
       for (let i in snapshot.val()) {
         let d = Lib.deepcopy(snapshot.val()[i]);
         this.setState({
@@ -75,16 +77,21 @@ class AddressShow extends Component {
     let to = Lib.encodeEmail(this.state.email);
     let db = getDatabase(app);
     let d = new Date().getTime();
+
     let ref0 = ref(db, 'address/' + from + '/' + to + '/message/' + d);
-    ref0.set('to: ' + this.state.input);
+    set(ref0, 'to: ' + this.state.input);
+
     let ref1 = ref(db, 'address/' + to + '/' + from + '/message/' + d);
-    ref1.set('from: ' + this.state.input);
+    set(ref1, 'from: ' + this.state.input);
+
     let ref2 = ref(db, 'address/' + from + '/' + to + '/check');
-    ref2.set(true);
+    set(ref2, true);
+
     this.setState({
       input: '',
     });
   }
+
 
   componentDidMount() {
     this.logined();
@@ -92,7 +99,6 @@ class AddressShow extends Component {
       this.getAddress(this.state.email);
     } else {
       console.log('Email is undefined'); // 未定義の場合のデバッグメッセージ
-      this.getAddress("test@test.com");
     }
   }
 
