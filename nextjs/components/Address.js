@@ -74,7 +74,7 @@ class Address extends Component {
         let email = Lib.decodeEmail(j);
         let s = data[i][j]['name'];
         res.push(
-          <li key={j} data-tag={email} onClick={() => this.go(email)}>
+          <li key={j} data-tag={email} onClick={this.go}>
             {data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
           </li>
         );
@@ -83,9 +83,11 @@ class Address extends Component {
     return res;
   }
 
-  go(email) {
+  go(e) {
+    let email = e.currentTarget.getAttribute('data-tag');
     Router.push('/address_show?email=' + email);
   }
+
 
   render() {
     return (
