@@ -86,14 +86,17 @@ class AddressShow extends Component {
     });
   }
 
-
-  render() {
+  componentDidMount() {
+    this.logined();
     if (this.state.email) {
-      this.getAddress(this.state.emaill);
+      this.getAddress(this.state.email);
     } else {
       console.log('Email is undefined'); // 未定義の場合のデバッグメッセージ
       this.getAddress("test@test.com");
     }
+  }
+
+  render() {
     let items = [];
     if (this.state.address != null) {
       for (let n in this.state.address.message) {

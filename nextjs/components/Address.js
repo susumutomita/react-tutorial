@@ -67,8 +67,11 @@ class Address extends Component {
       for (let j in data[i]) {
         let email = Lib.decodeEmail(i);
         let s = data[i][j]['name'];
-        res.push(<li key={j} data-tag={email}>{data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
-        </li>);
+        res.push(
+          <li key={j} data-tag={email} onClick={() => this.go(email)}>
+            {data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
+          </li>
+        );
       }
       break;
     }

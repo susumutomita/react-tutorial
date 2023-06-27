@@ -3,10 +3,10 @@ class Lib {
         return JSON.parse(JSON.stringify(obj));
     }
     static encodeEmail(email) {
-        return email.split(".").join("*");
+        return email ? email.split(".").join("*") : '';
     }
     static decodeEmail(email) {
-        return email.split("*").join(".");
+        return email ? email.split("*").join(".") : '';
     }
 }
 
