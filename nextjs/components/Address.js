@@ -75,7 +75,7 @@ class Address extends Component {
         let s = data[i][j]['name'];
         res.push(
           <li key={j} data-tag={email} onClick={this.go}>
-            {data[i][j]['check'] === true ? <b>X</b> : ''}{s}({email})
+            {data[i][j]['check'] === true ? <b>✓</b> : ''}{s}({email})
           </li>
         );
       }
