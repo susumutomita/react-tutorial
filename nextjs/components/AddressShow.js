@@ -23,9 +23,9 @@ class AddressShow extends Component {
     this.state = {
       last: -1,
       input: '',
-      email: this.props.email,  // use the email prop set in getInitialProps
+      email: Router.query.email,  // use the email prop set in getInitialProps
       address: null,
-      message: this.props.email + 'のデータ'
+      message: Router.query.email + 'のデータ'
     }
     this.logined = this.logined.bind(this);
     this.doChange = this.doChange.bind(this);
@@ -157,11 +157,4 @@ class AddressShow extends Component {
 }
 
 AddressShow = connect((state) => state)(AddressShow);
-AddressShow.getInitialProps = ({ router }) => {
-  const email = router.query.email;
-
-  return {
-    email: email
-  }
-}
 export default AddressShow;
