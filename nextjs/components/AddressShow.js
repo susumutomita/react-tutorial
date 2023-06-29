@@ -1,160 +1,144 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
-import Router from 'next/router';
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import Lib from '../static/address_lib';
 import Account from './Account';
-import { getDatabase, ref, onValue, set } from "firebase/database";
 import app from '../firebaseConfig';
 
-class AddressShow extends Component {
-  style = {
-    fontSize: "12pt",
-    padding: "5px 15px"
-  }
+const AddressShow = (props) => {
+  const router = useRouter();
+  const [state, setState] = useState({
+    last: -1,
+    input: '',
+    email: router.query.email,
+    address: null,
+    message: router.query.email + 'のデータ'
+  });
 
+  const logined = () => {
+    console.log('User has logged in');
+  };
 
-  constructor(props) {
-    super(props);
-    if (this.props.login === false) {
-      if (typeof window !== 'undefined') {
-        Router.push('/address');
-      }
-    }
-    this.state = {
-      last: -1,
-      input: '',
-      email: Router.query.email,  // use the email prop set in getInitialProps
-      address: null,
-      message: Router.query.email + 'のデータ'
-    }
-    this.logined = this.logined.bind(this);
-    this.doChange = this.doChange.bind(this);
-    this.doAction = this.doAction.bind(this);
-  }
+  const logouted = () => {
+    console.log('User has logged out');
+  };
 
-  logined() {
-    console.log("logined");
-  }
-
-  logouted() {
-    if (typeof window !== 'undefined') {
-      Router.push('/address');
-    }
-  }
-
-  getAddress(email) {
+  const getAddress = (email) => {
     let db = getDatabase(app);
-    let ref0 = ref(db, 'address/' + Lib.encodeEmail(this.props.email) + '/' + Lib.encodeEmail(email) + '/check');
+    let ref0 = ref(db, 'address/' + Lib.encodeEmail(props.email) + '/' + Lib.encodeEmail(email) + '/check');
     set(ref0, 0);
-    let refPath = ref(db, 'address/' + Lib.encodeEmail(this.props.email) + '/' + Lib.encodeEmail(email));
+    let refPath = ref(db, 'address/' + Lib.encodeEmail(props.email) + '/' + Lib.encodeEmail(email));
     onValue(refPath, (snapshot) => {
       let d = Lib.deepcopy(snapshot.val());
-      d.email = email; // メールアドレスを追加します
-      this.setState({
+      d.email = email;
+      setState(previousState => ({
+        ...previousState,
         address: d,
-      });
+      }));
     });
   }
 
-  doChange(e) {
-    this.setState({
+  const doChange = (e) => {
+    setState(previousState => ({
+      ...previousState,
       input: e.target.value
-    });
+    }));
   }
 
-
-  onChangeName(e) {
-    this.setState({
-      name: e.target.value
-    });
-  }
-
-  doAction(e) {
-    let from = Lib.encodeEmail(this.props.email);
-    let to = Lib.encodeEmail(this.state.email);
+  const doAction = (e) => {
+    let from = Lib.encodeEmail(props.email);
+    let to = Lib.encodeEmail(state.email);
     let db = getDatabase(app);
     let d = new Date().getTime();
 
     let ref0 = ref(db, 'address/' + from + '/' + to + '/message/' + d);
-    set(ref0, 'to: ' + this.state.input);
+    set(ref0, 'to: ' + state.input);
 
     let ref1 = ref(db, 'address/' + to + '/' + from + '/message/' + d);
-    set(ref1, 'from: ' + this.state.input);
+    set(ref1, 'from: ' + state.input);
 
     let ref2 = ref(db, 'address/' + from + '/' + to + '/check');
     set(ref2, true);
 
-    this.setState({
+    setState(previousState => ({
+      ...previousState,
       input: '',
-    });
+    }));
   }
 
-
-  componentDidMount() {
-    this.logined();
-    if (this.state.email) {
-      this.getAddress(this.state.email);
+  useEffect(() => {
+    if (state.email) {
+      getAddress(state.email);
     } else {
-      console.log('Email is undefined'); // 未定義の場合のデバッグメッセージ
+      console.log('Email is undefined');
     }
-  }
+  }, []);
 
-  render() {
-    let items = [];
-    if (this.state.address != null) {
-      for (let n in this.state.address.message) {
-        items.unshift(<li key={n}>{this.state.address.message[n]}</li>);
-      }
+  let items = [];
+  if (state.address != null) {
+    for (let n in state.address.message) {
+      items.unshift(<li key={n}>{state.address.message[n]}</li>);
     }
-    return (
-      <div>
-        <Account onLogined={this.logined} onLogouted={this.logouted} />
-        <p>{this.state.message}</p>
-        <hr />
-        {this.state.address != null
-          ?
-          <table>
-            <tbody>
-              <tr>
-                <th>NAME</th>
-                <td>{this.state.address.name}</td>
-              </tr>
-              <tr>
-                <th>MAIL</th>
-                <td>{this.state.address.email}</td>
-              </tr>
-              <tr>
-                <th>TEL</th>
-                <td>{this.state.address.tel}</td>
-              </tr>
-              <tr>
-                <th>MEMO</th>
-                <td>{this.state.address.memo}</td>
-              </tr>
-            </tbody>
-          </table>
-          :
-          <p>no address</p>
-        }
-        <hr />
-        <fieldset >
-          <p>Message:</p>
-          <input type="text" size="40" value={this.state.input} onChange={this.doChange} />
-          <button onClick={this.doAction}>send</button>
-        </fieldset>
-        {this.state.address != null && this.state.address.message != null
-          ?
-          <div>
-            <p>※{this.state.address.name}さんとのメッセージ</p>
-            <ul>{items}</ul>
-          </div>
-          :
-          <p>※メッセージはありません</p>
-        }
-      </div>
-    );
   }
+  return (
+    <div>
+      <Account onLogined={logined} onLogouted={logouted} />
+      <p>{state.message}</p>
+      <hr />
+      {state.address != null
+        ?
+        <table>
+          <tbody>
+            <tr>
+              <th>NAME</th>
+              <td>{state.address.name}</td>
+            </tr>
+            <tr>
+              <th>MAIL</th>
+              <td>{state.address.email}</td>
+            </tr>
+            <tr>
+              <th>TEL</th>
+              <td>{state.address.tel}</td>
+            </tr>
+            <tr>
+              <th>MEMO</th>
+              <td>{state.address.memo}</td>
+            </tr>
+          </tbody>
+        </table>
+        :
+        <p>no address</p>
+      }
+      <hr />
+      <fieldset >
+        <p>Message:</p>
+        <input type="text" size="40" value={state.input} onChange={doChange} />
+        <button onClick={doAction}>send</button>
+      </fieldset>
+      {state.address != null && state.address.message != null
+        ?
+        <div>
+          <p>※{state.address.name}さんとのメッセージ</p>
+          <ul>{items}</ul>
+        </div>
+        :
+        <p>※メッセージはありません</p>
+      }
+    </div>
+  );
 }
 
-AddressShow = connect((state) => state)(AddressShow);
-export default AddressShow;
+let AddressShowWithRedux = connect((state) => state)(AddressShow);
+export default AddressShowWithRedux;
+
+export async function getServerSideProps(context) {
+  const email = context.query.email;
+
+  return {
+    props: {
+      email: email
+    }
+  };
+}
