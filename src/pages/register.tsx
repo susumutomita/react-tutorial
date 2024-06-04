@@ -42,16 +42,6 @@ const RegisterPage = () => {
   return (
     <div className="register_page_container">
       <div className="side left_side">
-        <div className="animated_text">
-          <p>
-            Everyone is welcome here 🖤 <span>✦</span> Everyone is welcome here
-            🖤 <span>✦</span> Everyone is welcome here 🖤 <span>✦</span>{" "}
-            Everyone is welcome here 🖤 <span>✦</span> Everyone is welcome here
-            🖤 <span>✦</span> Everyone is welcome here 🖤 <span>✦</span>{" "}
-            Everyone is welcome here 🖤 <span>✦</span>
-          </p>
-        </div>
-
         <div className="occupations"></div>
       </div>
 
