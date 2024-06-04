@@ -54,11 +54,10 @@ const HomePage = () => {
           </div>
 
           <div className="hero_content">
-            <p className="built">BUILT WITH LOVE AT ETHGLOBAL 🖤</p>
-            <h1>All your data are belong to you.</h1>
+            <p className="built">Sample </p>
+            <h1>This is dashboard.</h1>
             <p className="sub_title">
-              Next-gen resumes: private, owner-controlled, decentralized, IPFS
-              stored and .cv domain linked on and off chain.
+              hogehoge
             </p>
 
             <div {...getRootProps({ className: "dropzone" })}>
@@ -70,11 +69,6 @@ const HomePage = () => {
               </p>
               <div className="btn">Browse files</div>
             </div>
-
-            <Link to="/register" className="btn_primary">
-              Create your id.cv
-            </Link>
-            <p className="free_and_paid">Free and Paid Options available</p>
           </div>
         </div>
 
@@ -110,7 +104,7 @@ const HomePage = () => {
         <div className="footer">
           <div className="info">
             <img src={logo} alt="Logo Img" />
-            <p>All your data are belong to you.</p>
+            <p>test.</p>
 
             <div className="socials">
               {socials?.map((item: any, i: number) => (
@@ -156,12 +150,7 @@ const HomePage = () => {
 
           <div className="animated_text">
             <p>
-              All your data are belong to you 🖤 <span>✦</span> All your data
-              are belong to you 🖤 <span>✦</span> All your data are belong to
-              you 🖤 <span>✦</span> All your data are belong to you 🖤{" "}
-              <span>✦</span> All your data are belong to you 🖤 <span>✦</span>{" "}
-              All your data are belong to you 🖤 <span>✦</span> All your data
-              are belong to you 🖤 <span>✦</span>
+              hoge  sample
             </p>
           </div>
         </div>
