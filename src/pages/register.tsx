@@ -5,7 +5,6 @@ import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { useAppDispatch } from "../redux";
 
-import Logo from "../components/logo";
 import Button from "../components/button";
 
 import { loginUserAction } from "../redux/auth/auth-slice";
@@ -53,7 +52,6 @@ const RegisterPage = () => {
         </div>
 
         <div className="form_container">
-          <Logo colored={true} />
 
           <Button
             text="Connect Wallet"
