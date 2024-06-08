@@ -69,13 +69,6 @@ const HomePage = () => {
         <div className="truly_yours">
           <div className="d_flex">
             <div className="info">
-              <h4>A CV that’s truly yours. Not owned by LinkedIn or Indeed.</h4>
-              <p>
-                🔐 Decentralized and Secure.
-                <br />
-                💼 Store resume data, credentials and badges.
-                <br />
-              </p>
 
               <Link to="/register" className="btn_primary">
                 Get your id.cv <Icon name="arrow" />
