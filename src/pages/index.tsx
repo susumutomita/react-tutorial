@@ -75,9 +75,6 @@ const HomePage = () => {
                 <br />
                 💼 Store resume data, credentials and badges.
                 <br />
-                🧑🏼‍💻 Memorable ENS-ready Address.
-                <br />
-                🙋🏽‍♀️ Decide who sees what, and for how long.
               </p>
 
               <Link to="/register" className="btn_primary">
